@@ -12,7 +12,11 @@ Escribe una función llamada addTwo que tome un array y sume dos a cada valor us
 ------------------------------------------------------------------------------------------------ */
 
 const addTwo = (arr) => {
-  // Código de solución aquí...
+  const newArray = []
+  for (let item of arr) {
+    newArray.push(item + 2);
+  }
+  return newArray;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -24,7 +28,7 @@ Por ejemplo, typeNum([1, 'bob' ,3]) devuelve [1,3].
 ------------------------------------------------------------------------------------------------ */
 
 const typeNum = (arr) => {
-  // Código de solución aquí...
+  return arr.filter(item => typeof item == "number");
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -36,7 +40,7 @@ Por ejemplo, containsAnd(['panda', 'ran', 'and']) devuelve ['panda', 'and'].
 ------------------------------------------------------------------------------------------------ */
 
 const containsAnd = (arr) => {
-  // Código de solución aquí...
+  return arr.filter(cadena => cadena.includes("and"));
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -48,7 +52,7 @@ Por ejemplo, oddValues([1,2,3]) devuelve [1,3].
 ------------------------------------------------------------------------------------------------ */
 
 const oddValues = (arr) => {
-  // Código de solución aquí...
+  return arr.filter(numero => (numero % 2 != 0));
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -60,7 +64,7 @@ Por ejemplo, notInFirstArray([1,2,3], [1,2,3,4]) devuelve [4].
 ------------------------------------------------------------------------------------------------ */
 
 const notInFirstArray = (forbiddenValues, arr) => {
-  // Código de solución aquí...
+  return arr.filter(valor => !forbiddenValues.includes(valor));
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -103,7 +107,7 @@ const snorlaxData = {
 };
 
 const getBaseStatGreaterThan = (arr, minBaseStat) => {
-  // Código de solución aquí...
+  return arr.filter(item => item.baseStat > minBaseStat);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -115,7 +119,7 @@ Por ejemplo, getStatName(snorlaxData.stats, 50) devolverá ['special-defense', '
 ------------------------------------------------------------------------------------------------ */
 
 const getStatName = (arr, minBaseStat) => {
-  // Código de solución aquí...
+  return arr.filter(item => item.baseStat > minBaseStat).map(item => item.stat.name);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -168,7 +172,7 @@ const characters = [
 ];
 
 const getCharactersWithoutChildren = (arr) => {
-  // Código de solución aquí...
+  return arr.filter(character => !(character.children && character.children.length > 0));
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -180,8 +184,12 @@ Por ejemplo: evenOddNumericValues(['Gregor', 2, 4, 1]) devuelve ['even', 'even',
 ------------------------------------------------------------------------------------------------ */
 
 const evenOddNumericValues = (arr) => {
-  // Código de solución aquí...
+  return arr.filter(item => typeof item == "number").map(e => {
+    if (e % 2 == 0) return "even"
+    return "odd";
+  });
 };
+
 
 /* ------------------------------------------------------------------------------------------------
 PRUEBAS
@@ -261,7 +269,7 @@ describe("Testing challenge 5", () => {
   });
 });
 
-xdescribe("Testing challenge 6", () => {
+describe("Testing challenge 6", () => {
   test("Debería devolver un array que contenga las estadísticas que son mayores que la entrada", () => {
     expect(getBaseStatGreaterThan(snorlaxData.stats, 75)).toStrictEqual([
       {
@@ -293,7 +301,7 @@ xdescribe("Testing challenge 6", () => {
   });
 });
 
-xdescribe("Testing challenge 7", () => {
+describe("Testing challenge 7", () => {
   test("Debería devolver el nombre de las estadísticas que exceden ese máximo", () => {
     expect(getStatName(snorlaxData.stats, 50)).toStrictEqual([
       "special-defense",
@@ -322,7 +330,7 @@ xdescribe("Testing challenge 7", () => {
   });
 });
 
-xdescribe("Testing challenge 8", () => {
+describe("Testing challenge 8", () => {
   test("Debería devolver un array que contenga personajes que no tienen hijos", () => {
     expect(getCharactersWithoutChildren(characters)).toStrictEqual([
       { name: "Sansa", spouse: "Tyrion", house: "Stark" },
@@ -332,7 +340,7 @@ xdescribe("Testing challenge 8", () => {
   });
 });
 
-xdescribe("Testing challenge 9", () => {
+describe("Testing challenge 9", () => {
   test('Debería eliminar valores no enteros y devolver "even" o "odd', () => {
     expect(evenOddNumericValues(["Gregor", 2, 4, 1])).toStrictEqual([
       "even",
