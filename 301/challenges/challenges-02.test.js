@@ -103,7 +103,13 @@ Por ejemplo: evenOdd([1,2,3]) devuelve ['odd','even','odd'].
 ------------------------------------------------------------------------------------------------ */
 
 const evenOdd = (arr) => {
-  // Código de solución aquí...
+  return arr.map(e=>{
+    if(typeof e === "number"){
+      if(e%2==0) return "even"
+      else return "odd";
+     }
+    return "N/A" 
+  });
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -118,38 +124,38 @@ extractAbilities(snorlaxAbilities.abilities)
 ------------------------------------------------------------------------------------------------ */
 
 const snorlaxAbilities = {
-  abilities: [
-    {
-      slot: 3,
-      is_hidden: true,
-      ability: {
-        url: 'https://pokeapi.co/api/v2/ability/82/',
-        name: 'gluttony',
-      },
-    },
-    {
-      slot: 2,
-      is_hidden: false,
-      ability: {
-        url: 'https://pokeapi.co/api/v2/ability/56/',
-        name: 'cute charm',
-      },
-    },
-    {
-      slot: 1,
-      is_hidden: false,
-      ability: {
-        url: 'https://pokeapi.co/api/v2/ability/17/',
-        name: 'immunity',
-      },
-    },
-  ],
-  name: 'snorlax',
-  weight: 4600,
+    abilities: [
+        {
+            slot: 3,
+            is_hidden: true,
+            ability: {
+                url: 'https://pokeapi.co/api/v2/ability/82/',
+                name: 'gluttony',
+            },
+        },
+        {
+            slot: 2,
+            is_hidden: false,
+            ability: {
+                url: 'https://pokeapi.co/api/v2/ability/56/',
+                name: 'cute charm',
+            },
+        },
+        {
+            slot: 1,
+            is_hidden: false,
+            ability: {
+                url: 'https://pokeapi.co/api/v2/ability/17/',
+                name: 'immunity',
+            },
+        },
+    ],
+    name: 'snorlax',
+    weight: 4600,
 };
 
 const extractAbilities = (arr) => {
-  // Código de solución aquí...
+  return arr.map(habilidad=>habilidad.ability.name);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -165,38 +171,38 @@ Aquí tienes un ejemplo de un solo elemento del array: { name: 'speed', total: 3
 ------------------------------------------------------------------------------------------------ */
 
 const snorlaxStats = {
-  stats: [
-    {
-      stat: {
-        url: 'https://pokeapi.co/api/v2/stat/6/',
-        name: 'speed',
-      },
-      effort: 5,
-      baseStat: 30,
-    },
-    {
-      stat: {
-        url: 'https://pokeapi.co/api/v2/stat/5/',
-        name: 'special-defense',
-      },
-      effort: 2,
-      baseStat: 110,
-    },
-    {
-      stat: {
-        url: 'https://pokeapi.co/api/v2/stat/4/',
-        name: 'special-attack',
-      },
-      effort: 9,
-      baseStat: 65,
-    },
-  ],
-  name: 'snorlax',
-  weight: 4600,
+    stats: [
+        {
+            stat: {
+                url: 'https://pokeapi.co/api/v2/stat/6/',
+                name: 'speed',
+            },
+            effort: 5,
+            baseStat: 30,
+        },
+        {
+            stat: {
+                url: 'https://pokeapi.co/api/v2/stat/5/',
+                name: 'special-defense',
+            },
+            effort: 2,
+            baseStat: 110,
+        },
+        {
+            stat: {
+                url: 'https://pokeapi.co/api/v2/stat/4/',
+                name: 'special-attack',
+            },
+            effort: 9,
+            baseStat: 65,
+        },
+    ],
+    name: 'snorlax',
+    weight: 4600,
 };
 
 const extractStats = (arr) => {
-  // Código de solución aquí...
+    return arr.map(stat=>({name:stat.stat.name,total:stat.effort + stat.baseStat}));
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -268,7 +274,7 @@ describe('Testing challenge 7', () => {
   });
 });
 
-xdescribe('Testing challenge 8', () => {
+describe('Testing challenge 8', () => {
   test('Debería devolver un array que contenga "even" o "odd" según el número', () => {
     expect(evenOdd([5, 8, 2, 6, 9, 13, 542, 541])).toStrictEqual(['odd', 'even', 'even', 'even', 'odd', 'odd', 'even', 'odd']);
     expect(evenOdd([5, 8, 2, 6, 9, 13, 542, 541]).length).toStrictEqual(8);
@@ -290,14 +296,14 @@ xdescribe('Testing challenge 8', () => {
   });
 });
 
-xdescribe('Testing challenge 9', () => {
+describe('Testing challenge 9', () => {
   test('Debería devolver un array que contenga solo los nombres de las habilidades', () => {
     expect(extractAbilities(snorlaxAbilities.abilities)).toStrictEqual(['gluttony', 'cute charm', 'immunity']);
     expect(extractAbilities(snorlaxAbilities.abilities).length).toStrictEqual(3);
   });
 });
 
-xdescribe('Testing challenge 10', () => {
+describe('Testing challenge 10', () => {
   test('Debería devolver un array que contenga objetos con los valores de nombre y total', () => {
     expect(extractStats(snorlaxStats.stats)).toStrictEqual([
       { name: 'speed', total: 35 },
