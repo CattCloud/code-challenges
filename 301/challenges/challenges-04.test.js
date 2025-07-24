@@ -28,7 +28,7 @@ Demuestra que el array original people no cambia
 ------------------------------------------------------------------------------------------------ */
 
 const addPeople = (arr) => {
-    // Código de solución aquí...
+    return ["Odie", ...people, "Garfield"]
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -45,7 +45,7 @@ Asegúrate de que el array people original y el objeto stuff no cambien
 ------------------------------------------------------------------------------------------------ */
 
 const setState = (arr, obj) => {
-    // Código de solución aquí...
+    return { people: [...arr], stuff:{ ...obj,cars:[...obj.cars]} }
 };
 
 
@@ -66,7 +66,7 @@ Asegúrate de que el array people original y el objeto stuff no cambien
 ------------------------------------------------------------------------------------------------ */
 
 const newState = (arr, obj) => {
-    // Código de solución aquí...
+    return { people: [...arr], stuff:{ ...obj ,toys : 58 ,toothbrush: 'brand new',cars:[...obj.cars,"Ford"] } }
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -83,7 +83,10 @@ Ejemplo de retorno: { first: 'Kookla', second: 'Fran', remaining: ['Ollie', 'Per
 ------------------------------------------------------------------------------------------------ */
 
 const combineAndExtract = (arr) => {
-    // Código de solución aquí...
+    const peets= ['Perro', 'Gato', 'Pez']
+    const mixArray= [...arr,...peets]
+    const [primero,segundo,...resto]=mixArray;
+    return {first:primero,second:segundo,remaining:resto}
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -101,7 +104,8 @@ Ejemplo: { electronics: {tv: 'huge', radio: 'old'}, toys: 57, toothbrush: 'fraye
 ------------------------------------------------------------------------------------------------ */
 
 const reorganizeStuff = (obj) => {
-    // Código de solución aquí...
+    const {tv,radio,...resto}=obj;
+    return {...resto,cars:[...resto.cars],electronics:{tv:tv,radio:radio},total_items:resto.toys+resto.cars.length}
 };
 
 
